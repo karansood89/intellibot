@@ -5,7 +5,8 @@ let imagebtn=document.querySelector("#image")
 let image=document.querySelector("#image img")
 let imageinput=document.querySelector("#image input")
 
-const Api_Url="https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyCqQZzWLHr-Wx83ddxl_uuINeEAbsgjqcQ"
+const Api_Url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyA1xrp2x9Bvh038_HGK2qfwptV_Pd0b1uE";
+
 
 let user={
     message:null,
@@ -20,7 +21,9 @@ async function generateResponse(aiChatBox) {
 let text=aiChatBox.querySelector(".ai-chat-area")
     let RequestOption={
         method:"POST",
-        headers:{'Content-Type' : 'application/json'},
+        headers:{
+  'Content-Type': 'application/json',
+  'x-goog-api-key': import.meta.env.VITE_GEMINI_API_KEY,
         body:JSON.stringify({
             "contents":[
                 {"parts":[{text:user.message},(user.file.data?[{inline_data:user.file}]:[])
@@ -116,3 +119,4 @@ imagebtn.addEventListener("click",()=>{
     imagebtn.querySelector("input").click()
 
 })
+
